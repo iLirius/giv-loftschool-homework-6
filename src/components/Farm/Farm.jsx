@@ -7,7 +7,7 @@ class Farm extends Component {
       <div className="farm">
         <h2>Производство на ферме</h2>
         <button disabled>Отправить урожай клиенту</button>
-        <div>1</div>
+        <div />
       </div>
     );
   }

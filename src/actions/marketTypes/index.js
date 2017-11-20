@@ -1,1 +1,5 @@
-export { MOVE_ORDER_TO_CUSTOMER } from "./marketTypes";
+export {
+  CREATE_ORDER,
+  MOVE_ORDER_TO_CUSTOMER,
+  MOVE_ORDER_TO_FARM
+} from "./marketTypes";
