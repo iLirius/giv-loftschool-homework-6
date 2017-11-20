@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import "./Budget.css";
 
-const Budget = props => <h1>Budget</h1>;
+class Budget extends Component {
+  render() {
+    return (
+      <div className="budget">
+        <h2>Бюджет</h2>
+      </div>
+    );
+  }
+}
 
 export default Budget;

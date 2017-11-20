@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import "./Market.css";
 
-import { connect } from "react-redux";
 let id = 0;
 const getId = () => {
   id += 1;
@@ -19,7 +20,7 @@ export const vegetables = [
   "Лук",
   "Перец",
   "Картофель",
-  "Редька",
+  "Редька"
 ];
 
 const getNewOrder = () => {
@@ -27,13 +28,20 @@ const getNewOrder = () => {
     id: getId(),
     name: vegetables[Math.floor(Math.random() * vegetables.length)],
     price: 100 + Math.floor(Math.random() * 100),
-    createdAt: new Date(),
+    createdAt: new Date()
   };
 };
 
 export class Market extends Component {
   render() {
-    return <div />;
+    return (
+      <div className="market">
+        <h2>Новые заказы в магазине</h2>
+        <button className="new-orders__create-button">Создать заказ</button>
+        <button disabled>Отправить заказ на ферму</button>
+        <div className="order-list" />
+      </div>
+    );
   }
 }
 

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+import "./Order.css";
 
-const Order = props => <h1>Order</h1>;
+class Order extends Component {
+  render() {
+    return <div className="order" />;
+  }
+}
 
 export default Order;
