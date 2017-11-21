@@ -1,1 +1,1 @@
-export { budget } from "./budget";
+export { default } from "./budget";
