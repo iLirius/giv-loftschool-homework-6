@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Order from "../Order";
 
 import "./Market.css";
 
@@ -33,13 +34,30 @@ const getNewOrder = () => {
 };
 
 export class Market extends Component {
+  state = {
+    orders: [],
+    isOrderable: false
+  };
+
+  handleClickCreateOrder = () => {
+    // const { orders } = this.state;
+    const newOrder = getNewOrder();
+    this.setState({ orders: [...this.state.orders, newOrder] });
+  };
+
   render() {
+    const { orders, isOrderable } = this.state;
     return (
       <div className="market">
         <h2>Новые заказы в магазине</h2>
-        <button className="new-orders__create-button">Создать заказ</button>
-        <button disabled>Отправить заказ на ферму</button>
-        <div className="order-list" />
+        <button
+          className="new-orders__create-button"
+          onClick={this.handleClickCreateOrder}
+        >
+          Создать заказ
+        </button>
+        <button disabled={!isOrderable}>Отправить заказ на ферму</button>
+        <div className="order-list">{orders.map(order => <Order />)}</div>
       </div>
     );
   }
