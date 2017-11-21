@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import Market from "../Market";
 import Farm from "../Farm";
 import Budget from "../Budget";
-import Order from "../Order";
 
 import "./App.css";
 
