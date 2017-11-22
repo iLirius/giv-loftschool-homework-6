@@ -44,7 +44,7 @@ export class Market extends Component {
   };
   handleClickMoveOrderToFarm = () => {
     const { moveOrderToFarm, orders } = this.props;
-    moveOrderToFarm(orders);
+    moveOrderToFarm(orders[orders.length - 1]);
   };
   render() {
     const { orders } = this.props;
