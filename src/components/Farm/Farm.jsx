@@ -2,23 +2,28 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Order from "../Order";
 
+import { moveOrderToCustomer } from "../../actions/farmActions";
+import { getOrderFarm } from "../../reducers/farm";
 import "./Farm.css";
 
 class Farm extends Component {
-  state = { orders: [] };
   render() {
-    const { orders } = this.state;
+    const { orders } = this.props;
     return (
       <div className="farm">
         <h2>Производство на ферме</h2>
-        <button disabled>Отправить урожай клиенту</button>
-        <div>{orders.map(order => <Order />)}</div>
+        <button disabled={!orders.length}>Отправить урожай клиенту</button>
+        <div>{orders.map(order => <Order key={order.id} {...order} />)}</div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = {};
+const mapStateToProps = state => ({
+  orders: getOrderFarm(state)
+});
+const mapDispatchToProps = {
+  moveOrderToCustomer
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Farm);

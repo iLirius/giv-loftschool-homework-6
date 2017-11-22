@@ -1,32 +1,25 @@
 import { MOVE_ORDER_TO_FARM } from "../../actions/marketTypes";
 import { MOVE_ORDER_TO_CUSTOMER } from "../../actions/farmTypes";
 
-// const farmInitState = ;
-
 const farm = (
-  state = {
-    orders: [],
-    profit: 0,
-    productionPrice: 0
-  },
+  state = { orders: [], profit: 0, productionPrice: 0 },
   action
 ) => {
-  let returnResult = [];
   switch (action.type) {
     case MOVE_ORDER_TO_CUSTOMER:
-      returnResult = {
+      return {
+        ...state,
         orders: state.orders.filter(
           order => order.id !== action.payload.id && order
         )
       };
-      break;
     case MOVE_ORDER_TO_FARM:
-      state.orders = state.orders || [];
-      returnResult = { orders: [...state.orders, action.payload] };
-      break;
+      return { ...state, orders: [...state.orders, action.payload] };
     default:
-      returnResult = state;
+      return state;
   }
-  return returnResult;
 };
+
+export const getOrderFarm = state => state.farm.orders;
+
 export default farm;

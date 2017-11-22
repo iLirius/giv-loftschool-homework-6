@@ -1,2 +1,3 @@
-import market from "./market";
+import market, { getOrderMarket } from "./market";
+export { getOrderMarket };
 export default market;

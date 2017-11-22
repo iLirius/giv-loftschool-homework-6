@@ -1,6 +1,7 @@
+import { combineReducers } from "redux";
 import { CREATE_ORDER, MOVE_ORDER_TO_FARM } from "../../actions/marketTypes";
 
-const market = (
+const createOrder = (
   state = {
     orders: []
   },
@@ -9,6 +10,18 @@ const market = (
   switch (action.type) {
     case CREATE_ORDER:
       return { ...state, orders: [...state.orders, action.payload] };
+    default:
+      return state;
+  }
+};
+
+const moveOrderToFarm = (
+  state = {
+    orders: []
+  },
+  action
+) => {
+  switch (action.type) {
     case MOVE_ORDER_TO_FARM:
       return {
         ...state,
@@ -21,6 +34,10 @@ const market = (
   }
 };
 
-export const getOrderMarket = state => state.market.orders;
+export const getOrderMarket = state => state.orders;
+const market = combineReducers({
+  createOrder,
+  moveOrderToFarm
+});
 
 export default market;

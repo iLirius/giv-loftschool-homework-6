@@ -3,14 +3,30 @@ import "./Order.css";
 
 class Order extends Component {
   render() {
+    const { name, price, createdAt } = this.props;
+
     return (
-      <div className="order">
+      <div className="order" id="order-{{id}}">
         <div className="order__upper">
-          <p className="p--order">Название: Горох</p>
-          <p className="p--order">Цена: 194</p>
+          <p className="p--order">{name}</p>
+          <p className="p--order">
+            Цена: <span>{price}</span>
+          </p>
         </div>
         <div className="order__lower">
-          <p className="p--order">Создан: 00:03:15 GMT+0300 (MSK)</p>
+          <p className="p--order">
+            {createdAt.getFullYear() +
+              "." +
+              createdAt.getMonth() +
+              "." +
+              createdAt.getDate() +
+              " " +
+              createdAt.getHours() +
+              ":" +
+              createdAt.getMinutes() +
+              ":" +
+              createdAt.getSeconds()}
+          </p>
         </div>
       </div>
     );

@@ -1,2 +1,3 @@
-import farm from "./farm.js";
+import farm, { getOrderFarm } from "./farm";
+export { getOrderFarm };
 export default farm;

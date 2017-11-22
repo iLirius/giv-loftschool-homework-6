@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { createOrder, moveOrderToFarm } from "../../actions/marketActions/";
+import { getOrderMarket } from "../../reducers/market";
+
 import Order from "../Order";
 
 import "./Market.css";
@@ -34,19 +37,17 @@ const getNewOrder = () => {
 };
 
 export class Market extends Component {
-  state = {
-    orders: [],
-    isOrderable: false
-  };
-
   handleClickCreateOrder = () => {
-    // const { orders } = this.state;
+    const { createOrder } = this.props;
     const newOrder = getNewOrder();
-    this.setState({ orders: [...this.state.orders, newOrder] });
+    createOrder(newOrder);
   };
-
+  handleClickMoveOrderToFarm = () => {
+    const { moveOrderToFarm, orders } = this.props;
+    moveOrderToFarm(orders);
+  };
   render() {
-    const { orders, isOrderable } = this.state;
+    const { orders } = this.props;
     return (
       <div className="market">
         <h2>Новые заказы в магазине</h2>
@@ -56,15 +57,24 @@ export class Market extends Component {
         >
           Создать заказ
         </button>
-        <button disabled={!isOrderable}>Отправить заказ на ферму</button>
-        <div className="order-list">{orders.map(order => <Order />)}</div>
+        <button
+          disabled={!orders.length}
+          onClick={this.handleClickMoveOrderToFarm}
+        >
+          Отправить заказ на ферму
+        </button>
+        <div className="order-list">
+          {orders.map(order => <Order key={order.id} {...order} />)}
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  orders: getOrderMarket(state)
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { createOrder, moveOrderToFarm };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Market);
